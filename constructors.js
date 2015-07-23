@@ -30,7 +30,9 @@
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
 
+function Foo() {}
 
+var foo = new Foo();
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
@@ -50,8 +52,9 @@ console.assert(foo instanceof Foo, 'variable foo should be an instanceof Foo');
 // `says` and the value should be `life is ruff`
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
-
-
+function Dog() {
+  this.says = 'life is ruff';
+}
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
@@ -71,8 +74,13 @@ console.assert(new Dog().says === 'life is ruff', 'all Dogs should have a method
 // create an instance of this called `cat`
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
+function Cat() {}
 
+Cat.prototype.growl = function() {
+  return 'meow';
+};
 
+var cat = new Cat();
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
@@ -89,13 +97,16 @@ console.assert(cat.growl() === 'meow', 'all cats should have a method `growl` th
 // 4. ------------------------------------------------------------ //
 
 // Create a constructor called `KeepSecret`. The constructor function
-// itself should accept a parameter called `secret` it should store
-// this in a private variable (use a closure). Add a method to the
-// prototype that is called `squeal` that returns the secret string.
+// itself should accept a parameter called `secret` it should keep
+// this as a private variable. Add a function to 'KeepSecret' that is called
+//  `squeal` that returns the secret string.
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
-
-
+function KeepSecret(secret) {
+  this.squeal = function() {
+      return secret;
+    };
+}
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
@@ -115,17 +126,27 @@ console.assert(dontTellNobody.squeal() === mySecret, 'Tell a secret when you `sq
 
 // Create a constructor called `Key`. Create another constructor
 // called `Safe`. Make the Safe constructor take 2 arguments. The
-// first argument can be any piece if data to keep safe. This must
+// first argument can be any piece of data to keep safe. This must
 // be stored using a private variable like you did with KeepSecret.
 // The 2nd param to the `Safe` constructor needs to be an instance
-// of `Key` you need to store it privately as well. Add a function
-// to the Safe prototype called `unlock` that accepts a key. If the
-// key matches the key that was used to create the Safe; then return
-// the secret data.
+// of `Key` you need to store it as a private variable. Then, add a
+// function to the Safe prototype called `unlock` that accepts a key.
+// If the key matches the key that was used to create the Safe; then
+// return the secret data.
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
+function Key() {}
 
+function Safe(rolex, key) {
+  this.unlock = function(unlockSafe) {
+    if (unlockSafe === key) {
+      return rolex;
+    } else {
+      return 'No touchy on my bling bling';
+    }
+  };
 
+}
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
@@ -160,8 +181,11 @@ console.assert(safe.unlock(rightKey) === sensitive, 'valid keys should open the 
 // the string is a valid email address and false if it is not.
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
-
-
+function Validator() {
+  this.email = function(email) {
+    return email.match(/[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/);
+  };
+}
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
