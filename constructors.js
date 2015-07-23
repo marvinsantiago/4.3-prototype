@@ -81,7 +81,6 @@ Cat.prototype.growl = function() {
 };
 
 var cat = new Cat();
-cat.growl();
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
@@ -182,6 +181,15 @@ console.assert(safe.unlock(rightKey) === sensitive, 'valid keys should open the 
 // the string is a valid email address and false if it is not.
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
+function Validator() {
+  this.email = function(email) {
+    if (email.search('@') >= 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+}
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
