@@ -183,11 +183,7 @@ console.assert(safe.unlock(rightKey) === sensitive, 'valid keys should open the 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
 function Validator() {
   this.email = function(email) {
-    if (email.search('@') >= 0) {
-      return true;
-    } else {
-      return false;
-    }
+    return email.match(/[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/);
   };
 }
 
